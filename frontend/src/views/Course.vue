@@ -81,6 +81,7 @@ let generalItems = ref([
 function taskCompute(index) {
     // Perform the action based on the index
 
+    localStorage.removeItem('course');
     localStorage.setItem('course', JSON.stringify(course));
     switch (index) {
       case 0:
