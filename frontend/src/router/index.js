@@ -6,6 +6,9 @@ const routes = [
   { path: '/home', name: 'Home', component: () => import('@/views/Home.vue'), meta:{ transition: 'fade'} }, 
   { path: '/courses', name: 'Courses', component: () => import('@/views/Courses.vue'), meta:{ transition: 'fade'} },
   { path: '/course/:id', name: 'Course', component: () => import('@/views/Course.vue'), meta:{ transition: 'fade'} },
+  { path: '/assignments', name: 'Assignments', component: () => import('@/views/Assignments.vue'), meta:{ transition: 'fade'} },
+  { path: '/dicussion', name: 'Discussion', component: () => import('@/views/Discussion.vue'), meta:{ transition: 'fade'} },
+  { path: '/events', name: 'Events', component: () => import('@/views/Events.vue'), meta:{ transition: 'fade'} },
   
 ]
 

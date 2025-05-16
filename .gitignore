@@ -29,3 +29,6 @@ env
 
 # Environment Variables
 .env 
+
+# vite config
+vite.config.js

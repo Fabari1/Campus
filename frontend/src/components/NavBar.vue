@@ -85,6 +85,7 @@ import { Tooltip } from "chart.js";
         localStorage.removeItem("courses");
         localStorage.removeItem("student");
         localStorage.removeItem("theme");
+        localStorage.removeItem("token");
 
     };
 

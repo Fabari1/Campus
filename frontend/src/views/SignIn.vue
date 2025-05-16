@@ -68,6 +68,11 @@ const checkCredentials = async () => {
 
       console.log("School ID:", schoolID.value);
 
+      // Get JWT token and store it in localStorage
+      const token = login.token;
+      localStorage.setItem("token", token);
+      console.log("Token:", token);
+
       // Fetch and store student courses and user details
       const course = await appStore.getStudentCourses(schoolID.value);
       const student = await appStore.getUser(schoolID.value);

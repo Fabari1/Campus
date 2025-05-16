@@ -14,25 +14,27 @@
             <v-card class="pa-4 mb-4">
             <h2 class="text-h5 mb-4">General</h2>
             <v-row dense>
-              <v-col cols="9" md="3" v-for="item in generalItems" :key="item.title">
-              <v-card class="d-flex flex-column align-center pa-4 mx-3 my-3 rounded-lg" elevation="2" hover>
-                <v-btn icon color="primary" size="large" class="mb-3">
-                <v-icon size="36">{{ item.icon }}</v-icon>
-                </v-btn>
-                <h3 class="text-subtitle-1 text-center">{{ item.title }}</h3>
-                
-              </v-card>
-
-              
-              </v-col>
-              <v-col cols="3" >
+              <v-col cols="9" md="3" v-for="(item, index) in generalItems" :key="item.title">
                 <v-card class="d-flex flex-column align-center pa-4 mx-3 my-3 rounded-lg" elevation="2" hover>
-                <v-btn icon color="primary" size="large" class="mb-3">
-                <h2 class="text-h5">{{ courseGrade }}</h2>
-                </v-btn>
-                <h3 class="text-subtitle-1 text-center">Grades</h3>
-                
-              </v-card>
+                  <v-btn
+                    icon
+                    color="primary"
+                    size="large"
+                    class="mb-3"
+                    @click="taskCompute(index)"
+                  >
+                    <v-icon>{{ item.icon }}</v-icon>
+                  </v-btn>
+                  <h3 class="text-subtitle-1 text-center">{{ item.title }}</h3>
+                </v-card>
+              </v-col>
+              <v-col cols="3">
+                <v-card class="d-flex flex-column align-center pa-4 mx-3 my-3 rounded-lg" elevation="2" hover>
+                  <v-btn icon color="primary" size="large" class="mb-3">
+                    <h2 class="text-h5">{{ courseGrade }}</h2>
+                  </v-btn>
+                  <h3 class="text-subtitle-1 text-center">Grades</h3>
+                </v-card>
               </v-col>
             </v-row>
             </v-card>
@@ -75,6 +77,25 @@ let generalItems = ref([
     { title: 'Events', icon: 'mdi-calendar' },
     
 ]);
+
+function taskCompute(index) {
+    // Perform the action based on the index
+
+    localStorage.setItem('course', JSON.stringify(course));
+    switch (index) {
+      case 0:
+        router.push({ name: 'Assignments', params: { id: course_id } });
+        break;
+      case 1:
+        router.push({ name: 'Discussion', params: { id: course_id } });
+        break;
+      case 2:
+        router.push({ name: 'Events', params: { id: course_id } });
+        break;
+      default:
+        break;
+    }
+  }
 
 let tab = ref(0);
 

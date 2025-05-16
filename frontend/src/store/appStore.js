@@ -58,8 +58,18 @@ export const useAppStore = defineStore('app', () => {
         const signal = controller.signal;
         const id = setTimeout(() => { controller.abort() }, 60000);
         const URL = `/api/student/${studentId}/courses`;
+        const token = localStorage.getItem("token");
+        if (token) {
+            console.log("Token found: ", token);
+        } else {
+            console.log("Token not found");
+        }
         try {
-            const response = await fetch(URL, { method: 'GET', signal: signal });
+            const response = await fetch(URL, { method: 'GET', signal: signal, headers: { 'Authorization': `Bearer ${token}` } });
+            if (response.status == 401) {
+                console.log("Unauthorized: ", response.status);
+                return []
+            }
             if (response.ok) {
                 const data = await response.json();
                 let keys = Object.keys(data);
@@ -91,9 +101,22 @@ export const useAppStore = defineStore('app', () => {
         const signal = controller.signal;
         const id = setTimeout(() => { controller.abort() }, 60000);
         const URL = `/api/user/${identification}`;
+        const token = localStorage.getItem("token");
+
+        if (token) {
+            console.log("Token found: ", token);
+        } else {
+            console.log("Token not found");
+        }
 
         try {
-            const response = await fetch(URL, { method: 'GET', signal: signal });
+            const response = await fetch(URL, { 
+                method: 'GET', 
+                signal: signal, 
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
             if (response.ok) {
                 const data = await response.json();
                 let keys = Object.keys(data);
